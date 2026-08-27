@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI WORKFLOW DESIGN — AIに仕事をさせる仕組みをつくる</title>
+<meta name="description" content="音声メモ1本から記事・画像・SNS投稿までを一本の流れで通す。AIエージェントに調べる・作る・確かめるを分業させた制作パイプラインの記録。">
+<meta property="og:title" content="AI WORKFLOW DESIGN">
+<meta property="og:description" content="AIエージェントに分業させて、人が確かめるところだけ残す。制作パイプラインの記録。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="index.html"><small>AI Workflow</small>YOSHI</a>
+    <nav class="site-nav" aria-label="メイン">
+      <a href="works/">Works</a>
+      <a href="log/">Log</a>
+      <a href="system/">System</a>
+      <a href="about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== hero ===== -->
+  <div class="shell">
+    <div class="hero">
+      <span class="badge">Portfolio 2026</span>
+      <h1>AI Workflow<br><em>Design</em></h1>
+      <p class="tagline">音声メモ1本から、記事・画像・SNS投稿までを一本の流れで通す。その工程をAIエージェントに分業させて、人が確かめるところだけ残す。</p>
+      <p class="sub">つくったものより、つくらせ方の記録を主役にしたサイトです。設計の判断と、途中で踏んだ失敗をそのまま置いています。</p>
+      <a class="btn" href="works/">Works を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== stats ===== -->
+  <div class="shell">
+    <section style="padding-block:0 clamp(3rem,7vw,5rem)">
+      <div class="stats reveal">
+        <div class="stat"><b>12</b><span>SKILLS</span></div>
+        <div class="stat"><b>7</b><span>AGENTS</span></div>
+        <div class="stat"><b>3</b><span>CASE STUDIES</span></div>
+        <div class="stat"><b>16</b><span>LOG ENTRIES</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== case studies ===== -->
+  <div class="shell">
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Case Studies</h2>
+        <p class="sec-note">課題 → 設計 → 詰まった点 → 検証 → 結果。3件だけ、最後まで書いています。</p>
+      </div>
+
+      <div class="feature-grid">
+
+        <a class="feature reveal" href="works/stopwatch/">
+          <span class="num">01</span>
+          <h3>完了条件だけ渡して、Webアプリを自走で仕上げる</h3>
+          <p>「テーマ切替がリロード後も保持される」まで条件に書いて放置。戻ってきた成果物のコントラスト比を実測したら、基準を下回る箇所が自力で直っていた。</p>
+          <div class="tags"><span class="badge is-open">Web</span><span class="badge is-open">自走</span><span class="badge is-open">検証</span></div>
+        </a>
+
+        <a class="feature reveal" href="works/pipeline/">
+          <span class="num">02</span>
+          <h3>音声メモ1本から、記事4種類までを通す</h3>
+          <p>録音を文字起こしし、裏づけを取って記事にし、小学生向け・画像プロンプト・SNS用2種に展開する。人が判断するのは題材選びと最終確認だけ。</p>
+          <div class="tags"><span class="badge is-open">記事</span><span class="badge is-open">パイプライン</span></div>
+        </a>
+
+        <a class="feature reveal" href="works/news-automation/">
+          <span class="num">03</span>
+          <h3>ブラウザを操作させて、調べ物を表にする</h3>
+          <p>ニュース3サイトを順に開いて見出しを取得し、スプレッドシートに流し込むまで。コードを書かず、ブラウザ操作そのものを任せた例。</p>
+          <div class="tags"><span class="badge is-open">自動化</span><span class="badge is-open">ブラウザ</span></div>
+        </a>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== works preview ===== -->
+  <div class="shell">
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Works</h2>
+        <p class="sec-note">単体で見て何か分かるものだけを並べています。工程の記録は Log にあります。</p>
+      </div>
+
+      <div class="work-grid">
+
+        <a class="work-card reveal" href="works/stopwatch/">
+          <div class="thumb">
+            <span class="flag badge">New</span>
+            <img src="assets/img/stopwatch-v2.webp" alt="ラップ計測とテーマ切替を備えたストップウォッチの画面" loading="lazy" width="1000" height="1000">
+          </div>
+          <p class="meta">Web アプリ <span>| 2026</span></p>
+          <h3>ストップウォッチ — ラップとテーマ保持つき</h3>
+        </a>
+
+        <a class="work-card reveal" href="works/">
+          <div class="thumb">
+            <img src="assets/img/atelier-welcome.webp" alt="水彩の絵本風に描かれた工房のイラスト" loading="lazy" width="1400" height="787">
+          </div>
+          <p class="meta">生成画像 <span>| 2026</span></p>
+          <h3>記憶の魔法工房 — 解説スライドのヒーロー</h3>
+        </a>
+
+        <a class="work-card reveal" href="works/">
+          <div class="thumb">
+            <img src="assets/img/learning-blueprint.webp" alt="青焼き図面風に描かれた学習システムの設計図" loading="lazy" width="1400" height="787">
+          </div>
+          <p class="meta">生成画像 <span>| 2026</span></p>
+          <h3>脳科学に基づく学習設計図</h3>
+        </a>
+
+        <a class="work-card reveal" href="works/pipeline/">
+          <div class="thumb">
+            <span class="tile is-blue">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+                <rect x="14" y="10" width="72" height="80" rx="8" fill="#fff"/>
+                <path d="M28 32h44M28 48h44M28 64h30"/>
+              </svg>
+            </span>
+          </div>
+          <p class="meta">記事 <span>| 2026</span></p>
+          <h3>音声メモから note 記事までのパイプライン</h3>
+        </a>
+
+      </div>
+
+      <a class="view-all" href="works/">View All
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </section>
+  </div>
+
+  <!-- ===== log preview ===== -->
+  <div class="shell">
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Log</h2>
+        <p class="sec-note">作業のたびに追記している記録。うまくいった話より、踏んだ落とし穴のほうを詳しく書いています。</p>
+      </div>
+
+      <div class="log-list">
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.20</span>
+          <div class="log-body">
+            <h3>ブラウザ操作を任せて、ニュース3サイトの見出しを表にした</h3>
+            <p>取得した見出しをそのまま指示として扱わないこと、取得時刻を必ず併記することを運用の前提にした。</p>
+            <div class="tags"><span class="badge is-open">自動化</span></div>
+          </div>
+          <a class="icon-circle" href="log/" aria-label="Log を見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.18</span>
+          <div class="log-body">
+            <h3>完了条件を4つ書いて放置したら、コントラスト比まで直して戻ってきた</h3>
+            <p>アクセントの緑が本文サイズで 3.9:1 しかなく、自分で 4.5:1 以上に調整していた。実測値が会話に出ているので検算できる。</p>
+            <div class="tags"><span class="badge is-open">Web</span><span class="badge is-open">自走</span></div>
+          </div>
+          <a class="icon-circle" href="works/stopwatch/" aria-label="ケーススタディを見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.15</span>
+          <div class="log-body">
+            <h3>レビュー役が、二重課金になる経路を見つけた</h3>
+            <p>待ち時間の定数を上げたのに手順書が旧値のままで、手順どおり実行すると「課金済みなのに成果物が無い」状態を必ず踏む、という指摘。</p>
+            <div class="tags"><span class="badge is-open">レビュー</span><span class="badge is-open">課金事故</span></div>
+          </div>
+          <a class="icon-circle" href="log/" aria-label="Log を見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <a class="view-all" href="log/">View All
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </section>
+  </div>
+
+  <!-- ===== system teaser ===== -->
+  <div class="shell">
+    <section>
+      <div class="callout is-yellow reveal">
+        <p class="lede">ツールを削ることが、役割の定義になっている。</p>
+        <p>レビュー担当からコマンド実行権限を外すと、そのエージェントは構造的に「実測した」と書けなくなります。プロンプトで「変更しないで」と頼むより確実で、その代わり削った分の情報は呼び出す側が渡す設計になります。7体のエージェントをどう分けたかは System にまとめました。</p>
+        <p><a class="btn is-ghost" href="system/">System を見る
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a></p>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-word">YOSHI</p>
+    <div class="footer-meta">
+      <span>AI Workflow Design</span>
+      <span>Built with plain HTML / CSS / JS</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" type="button" aria-label="ページ先頭へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

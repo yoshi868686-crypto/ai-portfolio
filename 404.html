@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — AI WORKFLOW DESIGN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Noto+Sans+JP:wght@400;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+  /* self-contained so it works at any path depth */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #fff; color: #000;
+    font-family: "Outfit", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    letter-spacing: 0.05em; line-height: 1.8;
+    display: grid; place-items: center; padding: 6vw;
+  }
+  .box { display: grid; gap: 1.75rem; justify-items: start; max-width: 34rem; }
+  h1 {
+    font-size: clamp(4rem, 22vw, 11rem); font-weight: 800; line-height: 0.9; margin: 0;
+    letter-spacing: 0.02em;
+    -webkit-text-stroke: 3px #000; -webkit-text-fill-color: transparent; color: transparent;
+  }
+  p { margin: 0; font-size: 0.95rem; }
+  a.btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #000; color: #fff; border: 2px solid #000; border-radius: 50px;
+    padding: 0.7rem 1.6rem; font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.4s cubic-bezier(0.25,1,0.5,1), color 0.4s cubic-bezier(0.25,1,0.5,1);
+  }
+  a.btn:hover { background: #ffdc55; color: #000; }
+  a.btn:focus-visible { outline: 3px solid #1473c1; outline-offset: 3px; }
+  .dots { display: flex; gap: 10px; }
+  .dots i { width: 26px; height: 26px; border: 2px solid #000; display: block; }
+  .dots i:nth-child(1) { background: #ed3b3b; border-radius: 50%; }
+  .dots i:nth-child(2) { background: #1473c1; border-radius: 6px; }
+  .dots i:nth-child(3) { background: #ffc536; border-radius: 50px; width: 44px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <div class="box">
+    <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <h1>404</h1>
+    <p><strong>そのページは見つかりませんでした。</strong><br>URL が変わったか、まだ書いていないかのどちらかです。</p>
+    <a class="btn" id="home" href="/">トップへ戻る</a>
+  </div>
+<script>
+  /* 404.html is served for any path depth, and a project page lives under
+     /<repo>/ rather than the domain root — so work the base out at runtime. */
+  (function () {
+    var seg = location.pathname.split("/").filter(Boolean);
+    var base = (location.hostname.slice(-10) === ".github.io" && seg.length) ? "/" + seg[0] + "/" : "/";
+    document.getElementById("home").setAttribute("href", base);
+  })();
+</script>
+</body>
+</html>

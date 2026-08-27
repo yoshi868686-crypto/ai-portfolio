@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音声メモ1本から記事4種類まで — AI WORKFLOW DESIGN</title>
+<meta name="description" content="録音を文字起こしし、裏づけを取って記事にし、4種類に展開する。人が判断するのは題材選びと最終確認だけにした制作パイプライン。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="../../index.html"><small>AI Workflow</small>YOSHI</a>
+    <nav class="site-nav" aria-label="メイン">
+      <a href="../">Works</a>
+      <a href="../../log/">Log</a>
+      <a href="../../system/">System</a>
+      <a href="../../about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+
+    <div class="page-head">
+      <p class="crumb"><a href="../../index.html">Home</a> / <a href="../">Works</a> / Pipeline</p>
+      <h1>Case 02</h1>
+      <p style="font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:700;line-height:1.7">音声メモ1本から、記事4種類までを通す</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem">
+        <span class="badge is-open">記事</span>
+        <span class="badge is-open">パイプライン</span>
+        <span class="badge is-open">文字起こし</span>
+        <span class="badge is-open">2026.08</span>
+      </div>
+    </div>
+
+    <section style="padding-top:0">
+      <div class="prose reveal">
+
+        <h2>課題</h2>
+        <p>録音は溜まるのに記事にならない。理由ははっきりしていて、<strong>文字起こしから記事にするまでの工程が長すぎる</strong>からです。聞き直して、要点を拾って、裏を取って、構成を決めて、書いて、SNS用に縮める。どこかで止まると、そこから先は永久に進みません。</p>
+
+        <h2>設計</h2>
+        <p>1本の長い手順書にせず、<strong>4つの独立した工程</strong>に割りました。途中で止まっても、次はその工程から再開できます。</p>
+
+        <div class="table-wrap" style="border:none">
+          <svg viewBox="0 0 900 200" role="img" aria-label="音声 から 文字起こし、記事、4種の加工へと進む工程図" style="width:100%;min-width:640px;height:auto">
+            <g fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="56" width="180" height="88" rx="14" fill="#ffc536"/>
+              <rect x="240" y="56" width="180" height="88" rx="14" fill="#45a5ed"/>
+              <rect x="472" y="56" width="180" height="88" rx="14" fill="#22ac38"/>
+              <rect x="704" y="56" width="188" height="88" rx="14" fill="#ed3b3b"/>
+              <path d="M196 100h36M428 100h36M660 100h36"/>
+              <path d="M226 92l10 8-10 8M458 92l10 8-10 8M690 92l10 8-10 8"/>
+            </g>
+            <g font-family="'Noto Sans JP',sans-serif" font-size="19" font-weight="700" fill="#000" text-anchor="middle">
+              <text x="98" y="94">音声メモ</text><text x="98" y="120" font-size="14" font-weight="400">録音そのまま</text>
+              <text x="330" y="94">文字起こし</text><text x="330" y="120" font-size="14" font-weight="400">要約と見出しつき</text>
+              <text x="562" y="94">記事</text><text x="562" y="120" font-size="14" font-weight="400">裏づけ + 画像3枚</text>
+              <text x="798" y="94">4種の加工</text><text x="798" y="120" font-size="14" font-weight="400">解説 / 画像 / SNS×2</text>
+            </g>
+          </svg>
+        </div>
+
+        <p>各工程は入力フォルダと出力フォルダだけで繋がっています。前の工程の成果物がそこにあれば動く。会話の文脈は引き継ぎません。</p>
+
+        <h2>詰まった点</h2>
+
+        <h3>1. 裏づけ資料が0件だと、記事が空回りする</h3>
+        <p>文字起こしには検証できる数値がたくさん出てくるのに、参照する資料が1つも無い状態で記事化させると、話者の言ったことをそのまま書くだけになります。そこで<strong>先に Web で裏を取り、その出典を記事フォルダに残す</strong>方針に変えました。次回以降そのフォルダを再利用できます。実際、話者が「6〜7割」と言っていたシェアが、実際はもっと高いことが照合で分かりました。</p>
+
+        <h3>2. 自動文字起こしの誤認識が、そのまま記事に入る</h3>
+        <p>固有名詞が激しく崩れます。専門用語が同音の別語に化ける、人名が別人になる、地名が実在しない語になる。<strong>誤った補正は、崩れたままの誤変換よりたちが悪い</strong>——読み手が気づけないからです。</p>
+        <p>採った方針は3つ。文脈から一意に定まるものだけ補正する。迷ったら直さず注記する。本文では正しい表記に統一したうえで、根拠と確信度を末尾の節にまとめる。記事の冒頭にも、自動文字起こしを基にしている旨のお断りを必ず入れます。</p>
+
+        <h3>3. 注記が加工の途中で消える</h3>
+        <p>元記事に「一次ソース未確認」と書いてあっても、SNS用に140字へ縮める過程で真っ先に落ちます。数字を扱う以上そこは消せないので、<strong>全加工物に注記を継承させる</strong>ルールを入れました。140字に入りきらない場合は、リプライ用の注記文を別に添えさせています。</p>
+
+        <h3>4. 画像生成は課金するので、先に検算する</h3>
+        <p>生成は1枚ごとに課金され、途中で止めても戻りません。だから API を叩く前に設定ファイルを検証するスクリプトを挟みました。同名が2つあると同じファイルに上書きされ、<strong>払ったのに1枚しか残らない</strong>ためです。</p>
+
+        <h2>検証</h2>
+        <p>文字数は目視で数えません。実測スクリプトの出力だけを判定に使います。</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>加工物</th><th>実測</th><th>判定</th></tr></thead>
+            <tbody>
+              <tr><td class="wrap">やさしい解説</td><td>3,459 字</td><td>OK</td></tr>
+              <tr><td class="wrap">画像生成プロンプト</td><td>5枚分</td><td class="wrap">共通スタイル定義 + 各比率指定</td></tr>
+              <tr><td class="wrap">SNS 140字</td><td class="wrap">本命 132 字 / 差し替え4案 115〜122 字</td><td>OK</td></tr>
+              <tr><td class="wrap">SNS 2000字</td><td>1,917 字</td><td class="wrap">上限に余裕あり</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>SNS用の文字数は、通常の文字数とは数え方そのものが違います（全角1文字＝2、半角＝0.5、URLは一律で固定値）。専用の計算を実装して、そちらで判定しています。</p>
+
+        <h2>結果</h2>
+        <p>対談音声1本から <strong>7,725 字</strong>の解説記事まで到達しました。本文だけで約6,300字、うち改行294個・スペース61個。Web からのコピペ由来の見えない空白が混ざっていないことも確認済みです。</p>
+
+        <div class="callout is-yellow">
+          <p class="lede">学んだこと — 工程を割ると、止まった場所から再開できる。</p>
+          <p>一本の長い自動化にすると、途中で失敗したとき最初からやり直しになります。フォルダを挟んで工程を切っておくと、<strong>失敗した工程だけ直せる</strong>。そして各工程が短いぶん、何が起きたか読めます。全部を1回で通す入口も用意してありますが、それは中で同じ3つを順に呼んでいるだけです。</p>
+        </div>
+
+      </div>
+
+      <a class="view-all" href="../news-automation/">Next Case
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-word">YOSHI</p>
+    <div class="footer-meta">
+      <span>AI Workflow Design</span>
+      <span>Built with plain HTML / CSS / JS</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" type="button" aria-label="ページ先頭へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="../../assets/app.js"></script>
+</body>
+</html>

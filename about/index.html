@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — AI WORKFLOW DESIGN</title>
+<meta name="description" content="できること、使っている道具、仕事の進め方。AIエージェントに分業させる制作パイプラインの設計と運用。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="../index.html"><small>AI Workflow</small>YOSHI</a>
+    <nav class="site-nav" aria-label="メイン">
+      <a href="../works/">Works</a>
+      <a href="../log/">Log</a>
+      <a href="../system/">System</a>
+      <a href="./">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / About</p>
+      <h1>About</h1>
+      <p>AIに作業を任せるための仕組みを設計しています。プロンプトを工夫することより、<strong>どの役に何を持たせないか</strong>を決めることのほうが、結果に効くと考えています。</p>
+    </div>
+
+    <section style="padding-top:0">
+      <div class="sec-head">
+        <h2 class="sec-title">Can Do</h2>
+        <p class="sec-note">実際に手を動かして、成果物まで持っていける範囲です。</p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature reveal">
+          <span class="num">A</span>
+          <h3>制作パイプラインの設計</h3>
+          <p>音声・動画・記事といった素材から、成果物までの工程を分解して自動化します。途中で止まったところから再開できる形に割るのが基本方針です。</p>
+          <div class="tags">
+            <span class="badge is-open">文字起こし</span>
+            <span class="badge is-open">記事化</span>
+            <span class="badge is-open">画像生成</span>
+            <span class="badge is-open">SNS展開</span>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <span class="num">B</span>
+          <h3>エージェントの権限設計</h3>
+          <p>作業者ごとに使えるツールを絞り、承認が要る操作を明示します。課金・不可逆・外部への副作用がある操作を、事故が起きる前に洗い出すところまで。</p>
+          <div class="tags">
+            <span class="badge is-open">権限設計</span>
+            <span class="badge is-open">レビュー体制</span>
+            <span class="badge is-open">運用ルール</span>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <span class="num">C</span>
+          <h3>小さなツールの実装</h3>
+          <p>1ファイルで完結する Web アプリ、検証スクリプト、ドキュメントの整備。フレームワークを使わず、開けばすぐ動く形にまとめます。</p>
+          <div class="tags">
+            <span class="badge is-open">HTML / CSS / JS</span>
+            <span class="badge is-open">Python</span>
+            <span class="badge is-open">PowerShell</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">How I Work</h2>
+      </div>
+
+      <div class="prose reveal">
+        <h2>測れないことは、任せない</h2>
+        <p>「きれいにして」「いい感じに」では何も起きません。「コントラスト比を実測して 4.5 : 1 以上にし、その数値を出力する」と書いた瞬間に、自分で測って直すようになります。<strong>受け入れ条件を数値と手順で書けるかどうか</strong>が、任せられるかどうかの境目です。</p>
+
+        <h2>課金と不可逆な操作には、必ず人を挟む</h2>
+        <p>外部APIを呼ぶ、ファイルを移動する、履歴を書き換える、外部アカウントに投稿する。この4つは実行前に確認を取ります。承認プロンプトが出ないことは、実行してよいことを意味しません。</p>
+
+        <h2>失敗のほうを記録に残す</h2>
+        <p>うまくいった手順は再現しにくいですが、踏んだ落とし穴は再現します。だから <a href="../log/" style="text-decoration:underline">Log</a> には、直した内容よりも<strong>なぜそれが起きたか</strong>を書いています。数値・オプション名・パス・終了コードは、記憶で書かず必ずコードを読んで写す——これも一度事故ってから決めたルールです。</p>
+
+        <h2>根拠を示せないことは「未確認」と書く</h2>
+        <p>調べて分からなかったことは、埋めずに未確認のまま残します。情報源が食い違っているなら両方を併記します。<strong>もっともらしく埋めた1行が、後で一番高くつきます。</strong></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Contact</h2>
+      </div>
+
+      <div class="callout is-yellow reveal">
+        <p class="lede">お仕事のご相談はこちらから。</p>
+        <p>制作パイプラインの設計、エージェントの権限まわりの相談、小さなツールの実装など。まずはやりたいことを箇条書きで送っていただければ、任せられる範囲と難しい範囲を分けてお返しします。</p>
+        <p style="display:flex;flex-wrap:wrap;gap:0.75rem">
+          <a class="btn" href="mailto:hello@example.com">Email
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
+          </a>
+          <a class="btn is-ghost" href="https://github.com/" rel="noopener">GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-word">YOSHI</p>
+    <div class="footer-meta">
+      <span>AI Workflow Design</span>
+      <span>Built with plain HTML / CSS / JS</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" type="button" aria-label="ページ先頭へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

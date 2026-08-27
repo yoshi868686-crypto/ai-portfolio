@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Works — AI WORKFLOW DESIGN</title>
+<meta name="description" content="AIに作らせた成果物の一覧。Webアプリ、生成画像、記事、自動化。単体で見て何か分かるものだけを並べています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="../index.html"><small>AI Workflow</small>YOSHI</a>
+    <nav class="site-nav" aria-label="メイン">
+      <a href="./">Works</a>
+      <a href="../log/">Log</a>
+      <a href="../system/">System</a>
+      <a href="../about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / Works</p>
+      <h1>Works</h1>
+      <p>単体で見て何か分かるものだけを置いています。作っている途中の画面や、設計をどう決めたかの記録は <a href="../log/" style="text-decoration:underline">Log</a> と <a href="../system/" style="text-decoration:underline">System</a> にあります。</p>
+    </div>
+
+    <section style="padding-top:0">
+      <div class="filters" role="group" aria-label="カテゴリで絞り込む">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="web" aria-pressed="false">Web</button>
+        <button type="button" data-filter="article" aria-pressed="false">記事</button>
+        <button type="button" data-filter="image" aria-pressed="false">画像</button>
+        <button type="button" data-filter="automation" aria-pressed="false">自動化</button>
+        <button type="button" data-filter="process" aria-pressed="false">プロセス</button>
+      </div>
+      <p id="filter-status" class="sr-only" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap"></p>
+
+      <div class="work-grid" data-filterable>
+
+        <a class="work-card reveal" href="stopwatch/" data-cat="web">
+          <div class="thumb">
+            <span class="flag badge">New</span>
+            <img src="../assets/img/stopwatch-v2.webp" alt="ラップ計測とテーマ切替を備えたストップウォッチの画面" loading="lazy" width="1000" height="1000">
+          </div>
+          <p class="meta">Web アプリ <span>| 2026.08</span></p>
+          <h3>ストップウォッチ — ラップとテーマ保持つき</h3>
+        </a>
+
+        <a class="work-card reveal" href="stopwatch/" data-cat="web">
+          <div class="thumb">
+            <img src="../assets/img/stopwatch-v1.webp" alt="Start / Stop / Reset だけを備えた初期版ストップウォッチの画面" loading="lazy" width="900" height="900">
+          </div>
+          <p class="meta">Web アプリ <span>| 2026.08</span></p>
+          <h3>ストップウォッチ — 初期実装</h3>
+        </a>
+
+        <a class="work-card reveal" href="stopwatch/" data-cat="process">
+          <div class="thumb">
+            <img src="../assets/img/stopwatch-plan.webp" alt="ストップウォッチの実装計画を書いたドキュメントの画面" loading="lazy" width="1200" height="1000">
+          </div>
+          <p class="meta">プロセス <span>| 2026.08</span></p>
+          <h3>実装計画 — 何を作り、何に触らないか</h3>
+        </a>
+
+        <a class="work-card reveal" href="./" data-cat="image">
+          <div class="thumb">
+            <img src="../assets/img/atelier-welcome.webp" alt="水彩の絵本風に描かれた工房のイラスト" loading="lazy" width="1400" height="787">
+          </div>
+          <p class="meta">生成画像 <span>| 2026.08</span></p>
+          <h3>記憶の魔法工房 — 解説スライドのヒーロー</h3>
+        </a>
+
+        <a class="work-card reveal" href="./" data-cat="image">
+          <div class="thumb">
+            <img src="../assets/img/atelier-cover.webp" alt="星空とランタンを添えた表紙イラスト" loading="lazy" width="1400" height="787">
+          </div>
+          <p class="meta">生成画像 <span>| 2026.08</span></p>
+          <h3>記憶の秘密のアトリエ — 差し替え案</h3>
+        </a>
+
+        <a class="work-card reveal" href="./" data-cat="image">
+          <div class="thumb">
+            <img src="../assets/img/learning-blueprint.webp" alt="青焼き図面風に描かれた学習システムの設計図" loading="lazy" width="1400" height="787">
+          </div>
+          <p class="meta">生成画像 <span>| 2026.08</span></p>
+          <h3>脳科学に基づく学習設計図</h3>
+        </a>
+
+        <a class="work-card reveal" href="./" data-cat="image process">
+          <div class="thumb">
+            <img src="../assets/img/image-prompt-spec.webp" alt="画像生成プロンプトの仕様を書き出したドキュメント" loading="lazy" width="1200" height="800">
+          </div>
+          <p class="meta">プロセス <span>| 2026.08</span></p>
+          <h3>画像プロンプトの仕様書 — 上の3枚の出どころ</h3>
+        </a>
+
+        <a class="work-card reveal" href="pipeline/" data-cat="article">
+          <div class="thumb">
+            <span class="tile is-blue">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+                <rect x="14" y="10" width="72" height="80" rx="8" fill="#fff"/>
+                <path d="M28 32h44M28 48h44M28 64h30"/>
+              </svg>
+            </span>
+          </div>
+          <p class="meta">記事 <span>| 2026.08</span></p>
+          <h3>音声メモから note 記事までのパイプライン</h3>
+        </a>
+
+        <a class="work-card reveal" href="pipeline/" data-cat="article">
+          <div class="thumb">
+            <span class="tile is-yellow">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="50" cy="50" r="34" fill="#fff"/>
+                <path d="M50 28v22l15 9"/>
+              </svg>
+            </span>
+          </div>
+          <p class="meta">記事 <span>| 2026.08</span></p>
+          <h3>7,725字の解説記事 — 対談音声からの再構成</h3>
+        </a>
+
+        <a class="work-card reveal" href="news-automation/" data-cat="automation">
+          <div class="thumb">
+            <span class="tile is-green">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="12" y="20" width="76" height="60" rx="8" fill="#fff"/>
+                <path d="M12 38h76M32 20v60M32 56h56"/>
+              </svg>
+            </span>
+          </div>
+          <p class="meta">自動化 <span>| 2026.08</span></p>
+          <h3>ニュース収集からスプレッドシートまで</h3>
+        </a>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-word">YOSHI</p>
+    <div class="footer-meta">
+      <span>AI Workflow Design</span>
+      <span>Built with plain HTML / CSS / JS</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" type="button" aria-label="ページ先頭へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

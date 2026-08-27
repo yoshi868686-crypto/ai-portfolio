@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log — AI WORKFLOW DESIGN</title>
+<meta name="description" content="AIエージェントとスキルを作りながら踏んだ落とし穴と、その直し方の記録。日付降順。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="../index.html"><small>AI Workflow</small>YOSHI</a>
+    <nav class="site-nav" aria-label="メイン">
+      <a href="../works/">Works</a>
+      <a href="./">Log</a>
+      <a href="../system/">System</a>
+      <a href="../about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / Log</p>
+      <h1>Log</h1>
+      <p>作業のたびに追記している記録です。うまくいった話より、<strong>踏んだ落とし穴のほう</strong>を詳しく書いています。同じ穴に落ちる人が減るのが目的なので、見出しは事実で切っています。</p>
+    </div>
+
+    <section style="padding-top:0">
+      <div class="log-list">
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.20</span>
+          <div class="log-body">
+            <h3>ブラウザ操作を任せて、ニュース3サイトの見出しを表にした</h3>
+            <p>コードを書かずに、ブラウザを開いて読み取る操作そのものを任せた。取得した見出しは<strong>調査対象のデータであって指示ではない</strong>という扱いを前提にし、取得時刻を必ず併記する運用にしている。ページ側に「以下を実行して」と書かれていても従わせない。</p>
+            <div class="tags"><span class="badge is-open">自動化</span><span class="badge is-open">ブラウザ</span></div>
+          </div>
+          <a class="icon-circle" href="../works/news-automation/" aria-label="ケーススタディを見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.18</span>
+          <div class="log-body">
+            <h3>完了条件を4つ書いて放置したら、コントラスト比まで直して戻ってきた</h3>
+            <p>「テーマ切替がリロード後も保持される」まで条件に含めて自走させた。戻ってきた成果物を検算したら、アクセントの緑が本文サイズで 3.9:1 しかない箇所を自分で見つけて 4.5:1 以上に調整していた。実測値が会話に出ているので、こちらで検算できるのが大きい。</p>
+            <div class="tags"><span class="badge is-open">Web</span><span class="badge is-open">自走</span><span class="badge is-open">検証</span></div>
+          </div>
+          <a class="icon-circle" href="../works/stopwatch/" aria-label="ケーススタディを見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.18</span>
+          <div class="log-body">
+            <h3>話し言葉を「完了条件の1行」に変換するスキルを作った</h3>
+            <p>自走の判定役は<strong>コマンドを実行せず、ファイルも読まない</strong>。会話に出力された内容だけで判定する。だから条件は「テストが通る」ではなく「検証コマンドを実行し、その出力が会話にあり失敗が0件」と書き直す必要がある。この変換表をスキルに落とした。課金や取り消せない操作は条件から外して警告する、も規則に入れている。</p>
+            <div class="tags"><span class="badge is-open">スキル設計</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.17</span>
+          <div class="log-body">
+            <h3>調べる・作る・確かめるを3体に分けて、実際に1周まわした</h3>
+            <p>分析役が5ファイルを読んで6件の修正計画を返し、承認を挟んで実装役が7件を実装、検証役が Critical 0 / Warning 3 で戻した。実装役が計画から外れた3点を自己申告してきたのが効いた。Warning は1〜2行で直る範囲だったので、規定どおり3フェーズを回さず直接直している。</p>
+            <div class="tags"><span class="badge is-open">エージェント</span><span class="badge is-open">3フェーズ</span></div>
+          </div>
+          <a class="icon-circle" href="../system/" aria-label="System を見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.16</span>
+          <div class="log-body">
+            <h3>要約スキルに「改善提案」と「文字数指定」を足した</h3>
+            <p>提案は効果の大きい順に3つ、各項目は「現状 → 提案」の形。現状は本文の該当箇所を見出し名・行番号・引用で示させる。3つ未満なら水増しせず「指摘できる改善点は2つ」と書かせる。<strong>提案するだけで直さない</strong>——編集ツールを持たせていないので構造的にもできない。</p>
+            <div class="tags"><span class="badge is-open">スキル設計</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.16</span>
+          <div class="log-body">
+            <h3>動画解析スキルを新設し、発動テストを 5/5 で通した</h3>
+            <p>実依頼を5件流して、どのスキルが選ばれるかだけを判定させた。「解析」という語を一切使わない言い回しでも発火する、迷った候補を自力で除外する、といった境界の挙動まで確認できた。設計上いちばん悩んだのは<strong>動画を再生できない</strong>という制約で、埋めようとすると必ず捏造になる。だから「節を消さず『未確認』と明記して残す」を規則に書き込んだ。</p>
+            <div class="tags"><span class="badge is-open">スキル設計</span><span class="badge is-open">発動テスト</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.16</span>
+          <div class="log-body">
+            <h3>競合の見出しを原文のまま抜き出すスキルを足した</h3>
+            <p>要約で済ませると見出しの階層と並び順が失われるので、原文・レベル・順序をそのまま取る作りにした。記事を書くエージェント側に、文字数計測のスキルと合わせて2つ紐づけている。</p>
+            <div class="tags"><span class="badge is-open">スキル設計</span><span class="badge is-open">SEO</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.16</span>
+          <div class="log-body">
+            <h3>記事の文字数を4回で目標レンジに収束させた</h3>
+            <p>5,803 → 5,529 → 5,384 → 5,127 字。許容範囲 4,850〜5,150 の内側に着地。引用が既存記事と重複していないかも突き合わせ、完全一致は0件だった。<strong>目視で数えると必ずずれる</strong>ので、判定には実測スクリプトの出力しか使わない。</p>
+            <div class="tags"><span class="badge is-open">記事</span><span class="badge is-open">実測</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.16</span>
+          <div class="log-body">
+            <h3>文字数の数え方を4パターンに固定した</h3>
+            <p>改行あり/なし × スペースあり/なしの4通りを必ず出す。どの数え方かを決めずに「何文字?」と聞くと会話が噛み合わないため。判定に使うのは「改行なし・スペースなし」の行だけ、と決めてある。</p>
+            <div class="tags"><span class="badge is-open">実測</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.15</span>
+          <div class="log-body">
+            <h3>課金の前に入力を検証するスクリプトを新設した</h3>
+            <p>画像生成に渡す設定ファイルを、API を叩く前に検算する。名前の重複を検出できないと同じファイルに上書きされ、課金しても1枚しか残らない。レビューはさらに踏み込んで、<strong>名前の重複判定が大文字小文字を区別するので header と Header が別名扱いになる</strong>——Windows のファイルシステムは区別しないので同じ画像になる、という穴を指摘してきた。</p>
+            <div class="tags"><span class="badge is-open">課金事故</span><span class="badge is-open">検証</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.15</span>
+          <div class="log-body">
+            <h3>レビュー役が、二重課金になる経路を見つけた</h3>
+            <p>待ち時間の定数を 420 秒から 900 秒に上げたのに、手順書だけ旧値のまま残っていた。手順どおり実行すると、コード側の待ち上限に達する前にプロセスが殺され、API 側のジョブは走り続ける。つまり<strong>課金済みなのに成果物が無い</strong>状態を必ず踏む。数値を書くときは該当のコード行を読んで写す、を規則に格上げした。</p>
+            <div class="tags"><span class="badge is-open">レビュー</span><span class="badge is-open">課金事故</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.15</span>
+          <div class="log-body">
+            <h3>レビュー役からコマンド実行権限を外した</h3>
+            <p>外した結果、自分で差分を取れなくなるので、差分は<strong>呼び出す側から渡す</strong>方式に変えた。渡されなかった場合は「差分ではなく現状に対するレビュー」と冒頭に明記させる。同時に「実行して確かめられない以上、実測を根拠にした書き方はしない」を制約に入れている。権限を削ることが、そのまま役割の定義になる。</p>
+            <div class="tags"><span class="badge is-open">エージェント</span><span class="badge is-open">権限設計</span></div>
+          </div>
+          <a class="icon-circle" href="../system/" aria-label="System を見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.13</span>
+          <div class="log-body">
+            <h3>記事を4種類に加工する工程が、通しで動いた</h3>
+            <p>1本の記事から、小学生向け解説・画像生成プロンプト5枚分・SNS用140字・SNS用2000字を生成。140字は本命132字＋差し替え4案、2000字は実測1,917字で上限に余裕あり。<strong>元記事の「一次ソース未確認」という注記を全ファイルに継承させる</strong>のが、加工で一番大事なところだった。</p>
+            <div class="tags"><span class="badge is-open">記事</span><span class="badge is-open">パイプライン</span></div>
+          </div>
+          <a class="icon-circle" href="../works/pipeline/" aria-label="ケーススタディを見る">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.08.03</span>
+          <div class="log-body">
+            <h3>音声メモから 7,725 字の記事まで到達した</h3>
+            <p>対談音声の自動文字起こしを基に再構成。自動認識には同音誤変換が多数あるので、文脈から復元した箇所を本文では正しい表記に統一し、根拠と確信度を末尾の節にまとめる形にした。裏づけを取った出典は別ファイルに残して、次回以降そのフォルダを再利用できるようにしている。</p>
+            <div class="tags"><span class="badge is-open">記事</span><span class="badge is-open">文字起こし</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.07.27</span>
+          <div class="log-body">
+            <h3>動画1本から、議事録と解析レポートの2種類を作った</h3>
+            <p>議事録はヘッダー表（会議名・日時・出席者・元URL）＋タイムスタンプ付きの議題一覧。解析レポートは基本情報・映像構成・タイムコード・意図分析・想定視聴者層の5部構成。どちらにも<strong>自動生成字幕を基にしている旨の注記</strong>を必ず付ける。</p>
+            <div class="tags"><span class="badge is-open">動画</span><span class="badge is-open">文字起こし</span></div>
+          </div>
+        </div>
+
+        <div class="log-item reveal">
+          <span class="log-date">2026.07.16</span>
+          <div class="log-body">
+            <h3>既存サイトをレビューさせて、ドキュメントを書き直させた</h3>
+            <p>改善提案を3点だけ出させ、ファイルは変更させない指示で実行。モバイル用ナビの実装欠落、画像未配置時のフォールバック不整合、構造化データとアクセシビリティ属性の不足、が挙がった。指摘は行番号つきで返ってくるので、その場で確かめられる。</p>
+            <div class="tags"><span class="badge is-open">レビュー</span><span class="badge is-open">Web</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-word">YOSHI</p>
+    <div class="footer-meta">
+      <span>AI Workflow Design</span>
+      <span>Built with plain HTML / CSS / JS</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" type="button" aria-label="ページ先頭へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

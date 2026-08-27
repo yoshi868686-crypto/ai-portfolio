@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>完了条件だけ渡して自走させる — AI WORKFLOW DESIGN</title>
+<meta name="description" content="完了条件を4つ書いて放置したストップウォッチ実装。戻ってきた成果物のコントラスト比を実測したら、基準を下回る箇所が自力で直っていた。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23ffc536' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="../../index.html"><small>AI Workflow</small>YOSHI</a>
+    <nav class="site-nav" aria-label="メイン">
+      <a href="../">Works</a>
+      <a href="../../log/">Log</a>
+      <a href="../../system/">System</a>
+      <a href="../../about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+
+    <div class="page-head">
+      <p class="crumb"><a href="../../index.html">Home</a> / <a href="../">Works</a> / Stopwatch</p>
+      <h1>Case 01</h1>
+      <p style="font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:700;line-height:1.7">完了条件だけ渡して、Webアプリを自走で仕上げる</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem">
+        <span class="badge is-open">Web</span>
+        <span class="badge is-open">自走</span>
+        <span class="badge is-open">アクセシビリティ</span>
+        <span class="badge is-open">2026.08</span>
+      </div>
+    </div>
+
+    <section style="padding-top:0">
+      <div class="prose reveal">
+
+        <h2>課題</h2>
+        <p>ブラウザで動くストップウォッチが欲しい、という依頼。サーバーもインストール作業も要らず、HTMLファイルをダブルクリックすればすぐ計測できる状態がゴールです。</p>
+        <p>ただし本題はそこではありませんでした。<strong>どこまで細かく条件を書けば、人が見に行かなくても仕上がるのか</strong>を試すのが目的です。</p>
+
+        <h2>設計</h2>
+        <p>作業フォルダには無関係なプロジェクトが同居していたので、既存のどれにも触れず、<strong>新しい1ファイルを足すだけ</strong>で完結させる方針にしました。同じ形で置かれている1ファイル完結のゲームが先例としてあったので、それに合わせています。</p>
+
+        <figure>
+          <img src="../../assets/img/stopwatch-plan.webp" alt="実装計画のドキュメント。作るファイルと触らないファイルを図で示している" loading="lazy" width="1200" height="1000">
+          <figcaption>実装前に出させた計画。「触らない」ファイルを明示させるのが、同居フォルダでは効く。</figcaption>
+        </figure>
+
+        <p>CSS と JavaScript は別ファイルに分けず、HTML に直接書き込む形にしました。分けると「HTML だけ開いても見た目が崩れる」事故が起きるためです。</p>
+
+        <h2>渡した完了条件</h2>
+        <p>自走の判定役は<strong>コマンドを実行せず、ファイルも読みません</strong>。会話に出力された内容だけで達成を判定します。つまり条件は「Claude 自身の出力として会話に現れうる形」でしか書けない。そこを踏まえて、4つに絞りました。</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>完了条件</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td class="wrap">Start / Stop / Reset が動く</td></tr>
+              <tr><td>2</td><td class="wrap">「分 : 秒 . ミリ秒」で表示する</td></tr>
+              <tr><td>3</td><td class="wrap">右上に「テーマ切替」ボタンがあり、押すと背景色と文字色がダーク / ライトで切り替わる</td></tr>
+              <tr><td>4</td><td class="wrap">ページをリロードしてもテーマ設定が保持される</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>「きれいにして」「いい感じに」のような主観語は入れていません。測り方が決まらない条件は、永久に達成されないか、逆に何もしていないのに達成と判定されるかのどちらかになります。</p>
+
+        <h2>詰まった点</h2>
+        <p>ここが一番おもしろいところでした。条件は4つとも満たされて戻ってきたのですが、<strong>自分で検証している最中に3つの不具合を見つけて直していた</strong>。</p>
+
+        <h3>1. ライトテーマのコントラストが足りていなかった</h3>
+        <p>アクセントに使っていた緑が、本文サイズで約 <strong>3.9 : 1</strong>。ダーク側では START ボタンの文字が 4.19 : 1。どちらも読みやすさの基準 4.5 : 1 を下回っていました。緑を明るく調整し、主要6組み合わせすべてを 4.5 : 1 以上に——最小 5.15 : 1、ラップ区間 6.15 : 1、本文 15.8〜17.7 : 1 まで持っていっています。</p>
+
+        <h3>2. 切り替わり方がちぐはぐだった</h3>
+        <p>body の文字色だけに 0.2 秒のフェードが掛かっていて、背景（グラデーションなのでトランジションが効かない）と表示部は即時。テーマを切り替えると文字だけ遅れて追いつく状態でした。トランジションを外して、全部同時に切り替わるようにしています。</p>
+
+        <h3>3. 狭い画面で見出しと接触していた</h3>
+        <p>テーマ切替ボタンを絶対配置していたため、375px 幅で見出しとの隙間が <strong>3px</strong> しかありませんでした。ヘッダ行に組み込む形に変更し、320px でも 34px の余白・横溢れ 0px を確認しています。</p>
+
+        <h2>検証</h2>
+        <p>静的サーバーで実際にファイルを開き、ボタンのイベントハンドラを通して操作した実測値です。</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>条件</th><th>結果</th><th>実測値</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>OK</td><td class="wrap">Start → 00:01.200、Stop 後 1 秒間そのまま固定、再開して 00:01.905（累積が継続）、Reset → 00:00.000</td></tr>
+              <tr><td>2</td><td>OK</td><td class="wrap">00:00.512 / 00:00.912 など全サンプルが <code>/^\d{2}:\d{2}\.\d{3}$/</code> に一致</td></tr>
+              <tr><td>3</td><td>OK</td><td class="wrap">押下で <code>data-theme</code> が dark ↔ light、背景グラデーションと文字色が両方変化</td></tr>
+              <tr><td>4</td><td>OK</td><td class="wrap">light → リロード → light、dark → リロード → dark の両方向で確認。保存値と表示テーマが常に一致</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>コンソールエラーは 0 件。作業前後で作業ディレクトリの状態も完全一致で、検証用に作った一時コピーは削除済みです。</p>
+
+        <h2>結果</h2>
+
+        <figure>
+          <img src="../../assets/img/stopwatch-v2.webp" alt="ラップ計測とテーマ切替を備えた完成版ストップウォッチ" loading="lazy" width="1000" height="1000">
+          <figcaption>完成版。ラップ記録、キーボード操作（Space / L / R / T）、テーマ保持。1ファイル完結・外部参照なしで約15KB。</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../../assets/img/stopwatch-v1.webp" alt="Start / Stop / Reset だけを備えた初期版" loading="lazy" width="900" height="900">
+          <figcaption>条件を足す前の初期版。ここから2条件を追加して自走させた。</figcaption>
+        </figure>
+
+        <p>配色は12個のカスタムプロパティに集約させました。色を直書きした箇所が残っていると、テーマを切り替えたときに片方だけ取り残されるためです。ストレージへの読み書きは try / catch で包んであり、保存できない環境でも切替自体は動きます。</p>
+
+        <div class="callout is-yellow">
+          <p class="lede">学んだこと — 測れる条件だけが、人の手を離れる。</p>
+          <p>「読みやすくして」では何も起きませんでした。「コントラスト比を実測して 4.5 : 1 以上にし、その数値を出力する」と書いた瞬間に、自分で測って直すようになる。<strong>判定役はファイルを読めない</strong>という制約が、結果的に「実測値を会話に出す」という良い習慣を強制しています。</p>
+        </div>
+
+      </div>
+
+      <a class="view-all" href="../pipeline/">Next Case
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-word">YOSHI</p>
+    <div class="footer-meta">
+      <span>AI Workflow Design</span>
+      <span>Built with plain HTML / CSS / JS</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" type="button" aria-label="ページ先頭へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="../../assets/app.js"></script>
+</body>
+</html>

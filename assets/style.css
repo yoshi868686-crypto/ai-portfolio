@@ -27,8 +27,9 @@
   --gray-3: #cccccc;
 
   /* text */
-  --text-2: #888888;
+  --text-2: #767676;  /* 白地で 4.54:1。#888888 は 3.54:1 で AA を割る */
   --text-3: #666666;
+  --text-faint: #949494;  /* 白地で 3.03:1。装飾的な大文字にのみ使う */
 
   /* stroke — a first-class token, same level as color and type */
   --stroke: 2px;
@@ -460,6 +461,12 @@ a:hover > .icon-circle,
   line-height: 1.6;
 }
 
+/* vector-effect is not inherited, so it has to be applied to the shapes
+   themselves. Without this the tile artwork drew a ~9px line next to the
+   card's own 2px border — the one stroke weight the whole system rests on. */
+.tile svg *,
+.table-wrap > svg * { vector-effect: non-scaling-stroke; }
+
 /* ---------- filter ---------- */
 
 .filters {
@@ -568,7 +575,7 @@ a:hover > .icon-circle,
 .prose h3 { margin: 0.75rem 0 0; font-size: 1rem; font-weight: 700; line-height: 1.6; }
 .prose p { margin: 0; line-height: 2; font-size: 0.92rem; }
 .prose ul { margin: 0; padding-left: 1.3em; display: grid; gap: 0.6rem; font-size: 0.9rem; line-height: 1.9; }
-.prose li::marker { color: var(--red); }
+.prose li::marker { color: var(--black); }
 .prose strong { font-weight: 700; }
 .prose figure { margin: 0; display: grid; gap: 0.7rem; }
 .prose figure img { border: var(--stroke) solid var(--black); border-radius: var(--radius); width: 100%; }
@@ -667,7 +674,7 @@ td.wrap:first-child { white-space: normal; }
   line-height: 0.85;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--gray-3);
+  color: var(--text-faint);
   margin: 0 0 1rem;
   user-select: none;
 }

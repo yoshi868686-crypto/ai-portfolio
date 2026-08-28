@@ -1,5 +1,19 @@
 @charset "utf-8";
 
+/* Outfit, self-hosted. Latin subset only (32KB, one request) — the page makes
+   no third-party font request at all. Japanese is left to the reader's system
+   gothic, which removed 607KB of web font spread over 31 files. */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("fonts/outfit-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ============================================================
    Bold Outline Pop
    One stroke weight, one stroke color, applied to everything.
@@ -50,7 +64,9 @@
   /* No generic inside --latin: a generic matches every codepoint, so it would
      swallow Japanese before --jp is ever reached. The generic goes last, once. */
   --latin: "Outfit", "Futura", "Avenir Next";
-  --jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic";
+  /* system gothic only — no Japanese web font is served */
+  --jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+        "Yu Gothic UI", "Yu Gothic", "Meiryo";
   --font: var(--latin), var(--jp), sans-serif;
 }
 
@@ -413,7 +429,7 @@ a:hover > .icon-circle,
   transition: transform var(--dur) var(--ease);
 }
 
-.work-card:hover .thumb { transform: translateY(-6px); }
+a.work-card:hover .thumb { transform: translateY(-6px); }
 
 .work-card .thumb img {
   width: 100%;

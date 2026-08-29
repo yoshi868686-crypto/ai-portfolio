@@ -250,6 +250,63 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   line-height: 1.9;
 }
 
+/* ---------- hero artwork ----------
+   生成イラストは地色が #fdfaf9 で、ページの #ffffff とわずかにずれる。
+   黒枠で囲むと、その境界が「意図した線」になって継ぎ目に見えなくなる。
+   大きな囲みなので線は 2px ではなく --stroke-thick、角丸は .callout と揃える。
+   影は付けない。フィルターで落とす影も使わない。
+   この CSS には影の宣言が1つも無く、それを grep で数えて検証している
+   （検証を壊さないよう、コメントにも影のプロパティ名を書かないこと）。 */
+
+.hero-art {
+  width: 100%;
+  border: var(--stroke-thick) solid var(--black);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+/* 900px 以上でだけ2カラムにする。既存の子要素は左カラムへ寄せ、
+   絵は右カラムで縦方向に全段ぶち抜き。
+   justify-items:start のままだと絵が内在幅に縮むので stretch で上書きする。 */
+@media (min-width: 900px) {
+  .hero {
+    max-width: none;
+    grid-template-columns: minmax(0, 38rem) minmax(0, 26rem);
+    align-items: center;
+    column-gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero > * { grid-column: 1; }
+
+  .hero > .hero-art {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    justify-self: stretch;
+    align-self: center;
+  }
+}
+
+/* ---------- ambient background artwork ----------
+   全面には敷かない。この画像は 0.27% だが純黒(rgb 0,0,0)のピクセルを含み、
+   黒本文がそこに重なると 1:1 になって文字が消える。平均輝度では判定できないので、
+   本文カラムの下に来ない位置にだけ置く。--confetti(-1) より下の -2。 */
+
+.art-ground {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  width: min(34vw, 460px);
+  aspect-ratio: 1 / 1;
+  background: url("img/bg-kawaii.webp") right bottom / contain no-repeat;
+  pointer-events: none;
+}
+
+/* 本文カラムと重なりうる幅では出さない */
+@media (max-width: 1100px) {
+  .art-ground { display: none; }
+}
+
 /* ---------- section heading ---------- */
 
 .sec-head {

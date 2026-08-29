@@ -719,13 +719,16 @@ a.work-card:hover .thumb { transform: translateY(-6px); }
 .prose figure img { border: var(--stroke) solid var(--black); border-radius: var(--radius); width: 100%; }
 .prose figcaption { font-size: 0.75rem; color: var(--text-2); letter-spacing: 0.06em; }
 
+/* 1px の灰色罫と角丸 4px は、このシステムに無い値だった。
+   罫を 2px の黒にすると系には合うが、インライン要素の上下ボーダーは
+   行ボックスからはみ出して隣の行に触る。塗りだけのチップにして、
+   角丸はシステムの --radius に揃える。 */
 code {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.85em;
   background: var(--gray-1);
-  border: 1px solid var(--gray-3);
-  border-radius: 4px;
-  padding: 1px 6px;
+  border-radius: var(--radius);
+  padding: 1px 8px;
 }
 
 /* ---------- spec table ---------- */

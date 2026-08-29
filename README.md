@@ -141,8 +141,7 @@ gh api repos/yoshi868686-crypto/ai-portfolio/pages/builds/latest --jq '.status, 
 - ログにパーマリンクとフィードが無い。`id="2026-08-20-..."` のアンカーと `feed.xml`
 - `works/` と `log/` で h1 の次が h3 になっている。カード群に h2 を入れる
 - 証拠として足したいスクリーンショットが 10〜12枚ある（素材は Desktop\portfolio に57枚）
-- `code` 要素だけ 1px の灰色罫と角丸 4px で、系から外れている
-- ヒーロー画像と装飾の帯が `index.html` にしか無い（他7ページは div を1行足すだけ）
+- ヒーロー画像は `index.html` にしか無い（他ページに別の絵を入れるなら画像生成が要る＝課金）
 
 ## 絞り込みとライトボックス
 

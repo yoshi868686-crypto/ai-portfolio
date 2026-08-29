@@ -42,9 +42,20 @@
     </div>
 
     <section style="padding-top:0">
-      <div class="log-list">
+      <div class="filters" role="group" aria-label="カテゴリで絞り込む">
+          <button type="button" data-filter="all" aria-pressed="true">All <span class="filters__n">16</span></button>
+          <button type="button" data-filter="agent" aria-pressed="false">エージェント <span class="filters__n">6</span></button>
+          <button type="button" data-filter="verify" aria-pressed="false">検証 <span class="filters__n">8</span></button>
+          <button type="button" data-filter="article" aria-pressed="false">記事 <span class="filters__n">5</span></button>
+          <button type="button" data-filter="web" aria-pressed="false">Web <span class="filters__n">2</span></button>
+          <button type="button" data-filter="automation" aria-pressed="false">自動化 <span class="filters__n">1</span></button>
+          <button type="button" data-filter="billing" aria-pressed="false">課金事故 <span class="filters__n">2</span></button>
+      </div>
+      <p id="filter-status" role="status" aria-live="polite" class="sr-only"></p>
 
-        <div class="log-item reveal">
+      <div class="log-list" data-filterable>
+
+        <div class="log-item reveal" data-cat="automation">
           <span class="log-date">2026.08.20</span>
           <div class="log-body">
             <h3>ブラウザ操作を任せて、ニュース3サイトの見出しを表にした</h3>
@@ -56,7 +67,7 @@
           </a>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="web verify">
           <span class="log-date">2026.08.18</span>
           <div class="log-body">
             <h3>完了条件を4つ書いて放置したら、コントラスト比まで直して戻ってきた</h3>
@@ -68,7 +79,7 @@
           </a>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="agent">
           <span class="log-date">2026.08.18</span>
           <div class="log-body">
             <h3>話し言葉を「完了条件の1行」に変換するスキルを作った</h3>
@@ -77,7 +88,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="agent verify">
           <span class="log-date">2026.08.17</span>
           <div class="log-body">
             <h3>調べる・作る・確かめるを3体に分けて、実際に1周まわした</h3>
@@ -89,7 +100,7 @@
           </a>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="agent">
           <span class="log-date">2026.08.16</span>
           <div class="log-body">
             <h3>要約スキルに「改善提案」と「文字数指定」を足した</h3>
@@ -98,7 +109,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="agent verify">
           <span class="log-date">2026.08.16</span>
           <div class="log-body">
             <h3>動画解析スキルを新設し、発動テストを 5/5 で通した</h3>
@@ -107,7 +118,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="agent article">
           <span class="log-date">2026.08.16</span>
           <div class="log-body">
             <h3>競合の見出しを原文のまま抜き出すスキルを足した</h3>
@@ -116,7 +127,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="article verify">
           <span class="log-date">2026.08.16</span>
           <div class="log-body">
             <h3>記事の文字数を4回で目標レンジに収束させた</h3>
@@ -125,7 +136,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="verify">
           <span class="log-date">2026.08.16</span>
           <div class="log-body">
             <h3>文字数の数え方を4パターンに固定した</h3>
@@ -134,7 +145,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="billing verify">
           <span class="log-date">2026.08.15</span>
           <div class="log-body">
             <h3>課金の前に入力を検証するスクリプトを新設した</h3>
@@ -143,7 +154,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="billing verify">
           <span class="log-date">2026.08.15</span>
           <div class="log-body">
             <h3>レビュー役が、二重課金になる経路を見つけた</h3>
@@ -152,7 +163,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="agent">
           <span class="log-date">2026.08.15</span>
           <div class="log-body">
             <h3>レビュー役からコマンド実行権限を外した</h3>
@@ -164,7 +175,7 @@
           </a>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="article">
           <span class="log-date">2026.08.13</span>
           <div class="log-body">
             <h3>記事を4種類に加工する工程が、通しで動いた</h3>
@@ -176,7 +187,7 @@
           </a>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="article">
           <span class="log-date">2026.08.03</span>
           <div class="log-body">
             <h3>音声メモから 7,725 字の記事まで到達した</h3>
@@ -185,7 +196,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="article">
           <span class="log-date">2026.07.27</span>
           <div class="log-body">
             <h3>動画1本から、議事録と解析レポートの2種類を作った</h3>
@@ -194,7 +205,7 @@
           </div>
         </div>
 
-        <div class="log-item reveal">
+        <div class="log-item reveal" data-cat="web verify">
           <span class="log-date">2026.07.16</span>
           <div class="log-body">
             <h3>既存サイトをレビューさせて、ドキュメントを書き直させた</h3>

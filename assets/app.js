@@ -110,11 +110,64 @@
     });
   }
 
+  /* ---------- lightbox ----------
+     サムネイルは 229px でしか出ないので、文書のスクリーンショットは文字が読めない。
+     対象はリンクになっていない画像だけ。リンクのカードは遷移が本来の動作なので触らない。 */
+  function lightbox() {
+    var targets = document.querySelectorAll(".prose figure img, .work-card.is-static .thumb img");
+    if (!targets.length || typeof HTMLDialogElement === "undefined") return;
+
+    var dlg = document.createElement("dialog");
+    dlg.className = "lightbox";
+    dlg.innerHTML =
+      '<button class="lightbox__close icon-circle" type="button" aria-label="閉じる">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" ' +
+      'stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+      "</button>" +
+      /* 画像は原寸で出す。縮めて表示すると、サムネイルより小さくなって
+         拡大の意味が無くなる（実測で 483px のサムネに対し 471px だった）。
+         収まらないぶんはこの枠の中でスクロールさせる。 */
+      '<div class="lightbox__frame" tabindex="0"><img alt=""></div>' +
+      '<p class="lightbox__cap"></p>';
+    document.body.appendChild(dlg);
+
+    var big = dlg.querySelector("img");
+    var cap = dlg.querySelector(".lightbox__cap");
+    var opener = null;
+
+    var open = function (img) {
+      opener = img;
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+      var fig = img.closest("figure");
+      var fc = fig && fig.querySelector("figcaption");
+      cap.textContent = fc ? fc.textContent.trim() : img.alt;
+      dlg.showModal();
+    };
+
+    Array.prototype.forEach.call(targets, function (img) {
+      img.classList.add("is-zoomable");
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      img.addEventListener("click", function () { open(img); });
+      img.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(img); }
+      });
+    });
+
+    dlg.querySelector(".lightbox__close").addEventListener("click", function () { dlg.close(); });
+    /* 余白（= dialog 自身）のクリックで閉じる。中身のクリックでは閉じない */
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    /* Esc とボタンの両方で、開くきっかけになった画像へフォーカスを戻す */
+    dlg.addEventListener("close", function () { if (opener) opener.focus(); });
+  }
+
   function init() {
     paintConfetti();
     markCurrent();
     reveal();
     filters();
+    lightbox();
     fab();
   }
 
